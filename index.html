@@ -176,12 +176,18 @@
     <!-- Contact -->
     <section id="contact">
       <h2>Contact Me</h2>
-      <form action="send.php" method="POST" class="contact-form">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
+      <form action="https://formsubmit.co/prashanthsoori@gmail.com" method="POST" class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+
+      <!-- optional settings
+      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+      <input type="hidden" name="_captcha" value="false"> -->
+
+  <button type="submit">Send Message</button>
+</form>
+
     </section>
 
   </main>
