@@ -9,31 +9,46 @@
 </head>
 <body>
 
-  <!-- Toggle Button -->
-  <div class="toggle-wrapper">
-    <input type="checkbox" id="theme-toggle" />
-    <label for="theme-toggle" class="toggle-label">
-      <span class="icon sun">🌞</span>
-      <span class="icon moon">🌙</span>
-      <span class="ball"></span>
-    </label>
-  </div>
-
-
   <div id="bg1" class="bg-fade" style="background-image: url('images/bg1.jpg')"></div>
   <div id="bg2" class="bg-fade" style="background-image: url('images/bg2.jpg')"></div>
   <div id="bg3" class="bg-fade" style="background-image: url('images/bg3.jpg')"></div>
   <div id="bg4" class="bg-fade" style="background-image: url('images/bg4.jpg')"></div>
   <div id="bg5" class="bg-fade" style="background-image: url('images/bg5.jpg')"></div>
 
+  <nav class="navbar">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact Me</a></li>
+      </ul>
 
+      <!-- Toggle inside navbar -->
+      <div class="toggle-wrapper nav-toggle">
+        <input type="checkbox" id="theme-toggle" />
+        <label for="theme-toggle" class="toggle-label">
+          <span class="icon sun">🌞</span>
+          <span class="icon moon">🌙</span>
+          <span class="ball"></span>
+        </label>
+      </div>
+    </div>
+  </nav>
 
   <!-- Header -->
-  <header id="header">
-    <img src="profile.jpg" alt="Prashanth Suresh">
-    <h1>Prashanth Suresh</h1>
-    <p>🚀 Turning Ideas into Impact | Backend & AI Developer with a Passion for Innovation</p>
-  </header>
+  <section id="profile">
+    <div class="profile-wrapper">
+      <img src="profile.jpg" alt="Prashanth Suresh" class="profile-pic">
+      <div class="profile-info">
+        <h1>Prashanth Suresh</h1>
+        <h3><b>Turning Ideas into Impact | Backend & AI Developer with a Passion for Innovation</b></h3>
+      </div>
+    </div>
+  </section>
+
+
 
   <main class="container">
 
@@ -78,7 +93,7 @@
         </div>
 
         <div class="card">
-          <h3>Cetas InfoTech</h3>
+          <h3>Cetas Infomation Technologies</h3>
           <p>Power Platform Intern (Jun–Jul 2024)</p>
           <p>Trained to build applications using Microsoft Power Apps and Power BI.</p>
         </div>
@@ -176,17 +191,23 @@
     <!-- Contact -->
     <section id="contact">
       <h2>Contact Me</h2>
-      <form action="https://formsubmit.co/prashanthsoori@gmail.com" method="POST" class="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+      <form action="https://formsubmit.co/prashanthsoori@gmail.com" method="POST" onsubmit="showPopup(event)" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit">Send Message</button>
+      </form>
 
-      <!-- optional settings
-      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
-      <input type="hidden" name="_captcha" value="false"> -->
+      <div id="popup-overlay">
+        <div id="popup-box">
+          <p>Thanks for contacting me! <br>I’ll get back to you soon.</p>
+          <button onclick="hidePopup()">Go Back</button>
+        </div>
+      </div>
 
-  <button type="submit">Send Message</button>
-</form>
+
 
     </section>
 

@@ -10,17 +10,13 @@ const bgImages = [
 ];
 
 
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollY / docHeight) * 100;
-
+function updateBackgroundImage(scrollPercent) {
   const ranges = [
-    { bg: bgImages[0], min: 1, max: 14 },   // bg1: 0% - 15%
-    { bg: bgImages[1], min: 14, max: 37 },  // bg2: 15% - 30%
-    { bg: bgImages[2], min: 37, max: 59 },  // bg3: 30% - 50%
-    { bg: bgImages[3], min: 59, max: 92 },  // bg4: 50% - 85%
-    { bg: bgImages[4], min: 92, max: 100 }  // bg5: 85% - 100%
+    { bg: bgImages[0], min: 0, max: 10 },   // bg1: 0% - 14%
+    { bg: bgImages[1], min: 10, max: 32 },  // bg2
+    { bg: bgImages[2], min: 32, max: 50 },  // bg3
+    { bg: bgImages[3], min: 50, max: 92 },  // bg4
+    { bg: bgImages[4], min: 92, max: 105 }  // bg5
   ];
 
   ranges.forEach(({ bg, min, max }) => {
@@ -30,6 +26,20 @@ window.addEventListener('scroll', () => {
       bg.classList.remove('bg-visible');
     }
   });
+}
+
+function handleScroll() {
+  const scrollY = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollY / docHeight) * 100;
+
+  updateBackgroundImage(scrollPercent);
+}
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('load', () => {
+  updateBackgroundImage(0); // force bg1 to show initially
+  handleScrollSlideUp();    // also run your card animations
 });
 
 
@@ -52,6 +62,42 @@ themeToggle.addEventListener('change', () => {
 
 
 
+function showPopup(event) {
+  event.preventDefault(); // Prevent default form submission
+  document.getElementById('popup-overlay').style.display = 'flex';
+
+  // Send the form data using fetch
+  const form = event.target;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(() => form.reset());
+}
+
+function hidePopup() {
+  document.getElementById('popup-overlay').style.display = 'none';
+}
 
 
+
+function handleScrollSlideUp() {
+  const cards = document.querySelectorAll('.card, .skills-card');
+
+  cards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (isVisible) {
+      card.classList.add('slide-up');
+    } else {
+      card.classList.remove('slide-up');
+    }
+  });
+}
+
+window.addEventListener('scroll', handleScrollSlideUp);
+window.addEventListener('load', handleScrollSlideUp);
 
